@@ -1,0 +1,40 @@
+import elementos.*
+import personajes.*
+import armas.*
+
+describe "Testeamos los elementos y personajes" {
+
+  test "floqui comienza con el arma ballesta cargada con 10 flechas 
+  y si se encuentra a un elemento gasta una de las flechas " {
+    assert.equals(10, ballesta.flechas())
+    floki.encontrar(aurora)
+    assert.that(ballesta.flechas() < 10)
+  }
+
+  test "si mario se encuenta con el castillo
+   es feliz porque mide mas de 10 metros" {
+    mario.encontrar(castillo)
+    assert.that(mario.esFeliz())
+  }
+
+  test "Aurora comienza estando viva, pero si floki la encuentra
+  teniendo la jabalina como arma Aurora ya no esta viva"{
+    assert.that(aurora.estaViva())
+    floki.arma(jabalina)
+    floki.encontrar(aurora)
+    assert.notThat(aurora.estaViva())
+  }
+
+  test "Luisa comienza sin ningun personaje asignado, 
+  pero se le puede asignar uno y le puede mandar el mensaje
+  aparece(unElemento)
+  Aca le asignamos a Mario, el mismo se encuenta con tipa,
+  y tipa crece un metro" {
+    assert.equals(8, tipa.altura()) // tipa inicia con 8 metros de altura
+    assert.that(luisa.personajeActivo() == null)// luisa no tiene pesonaje activo
+    luisa.personajeActivo(mario)// le asignamos a Mario
+    luisa.aparece(tipa)// luisa le avisa a mario que se encuentre a Tipa
+    assert.notEquals(8, tipa.altura())// Tipa creció porque recibio trabajo de Mario
+  }
+
+}
